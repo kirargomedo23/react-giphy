@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { PropTypes } from 'prop-types'
 import './styleInput.css'
 
-const InputSearch = () => {
+const InputSearch = ({ handleSetSearchWord }) => {
 	const [input, setInput] = useState('')
 
 	const handleSearch = e => {
-		e.preventDefault()
+		handleSetSearchWord(input)
 	}
 
 	const handleInputSearch = e => {
@@ -16,9 +17,13 @@ const InputSearch = () => {
 	return (
 		<div className='container__input'>
 			<input value={input} onChange={handleInputSearch} type='text' />
-			<button onClick={() => handleSearch}>Buscar</button>
+			<button onClick={handleSearch}>Buscar</button>
 		</div>
 	)
+}
+
+InputSearch.propTypes = {
+	handleSetSearchWord: PropTypes.func,
 }
 
 export default InputSearch
